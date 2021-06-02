@@ -24,7 +24,7 @@ class StoryMenuState extends MusicBeatState
 
 	var weekData:Array<Dynamic> = [
 		// Songs that are in the weeks
-		['Berzerker', 'Possesion', 'Takeover']
+		['Berzerker', 'Possession', 'Takeover']
 	];
 	var weekColors:Array<FlxColor> = [
 		FlxColor.fromRGB(194, 13, 0)

@@ -15,7 +15,7 @@ class HealthIcon extends FlxSprite
 		loadGraphic(Paths.image('iconGrid'), true, 150, 150);
 
 		antialiasing = true;
-		animation.add('bf', [0, 1, 29], 0, false, isPlayer);
+		animation.add('bf', [0, 1, 0], 0, false, isPlayer);
 		animation.add('cass', [6, 7, 6], 0, false, isPlayer);
 		animation.play(char);
 		scrollFactor.set();

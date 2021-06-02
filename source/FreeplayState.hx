@@ -56,7 +56,7 @@ class FreeplayState extends MusicBeatState
 		isDebug = true;
 		#end
 
-		addWeek(['Berzerker', 'Possesion', 'Takeover'], 6, ['cass']);
+		addWeek(['Berzerker', 'Possession', 'Takeover'], 0, ['cass']);
 		// LOAD CHARACTERS
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));

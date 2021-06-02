@@ -80,6 +80,25 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 20, -160);
 
 				playAnim('idle');
+			case 'demon':
+				tex = Paths.getSparrowAtlas('demon');
+				frames = tex;
+	
+				animation.addByPrefix('idle', "Mom Idle", 24, false);
+				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+				// ANIMATION IS CALLED MOM LEFT POSE BUT ITS FOR THE RIGHT
+				// CUZ DAVE IS DUMB!
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+	
+				addOffset('idle');
+				addOffset("singUP", 0, 35);
+				addOffset("singRIGHT", 6, -60);
+				addOffset("singLEFT", 77, 0);
+				addOffset("singDOWN", 187, -107);
+	
+				playAnim('idle');
 			case 'bf':
 				var tex = Paths.getSparrowAtlas('BOYFRIEND');
 				frames = tex;
