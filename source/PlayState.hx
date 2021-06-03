@@ -1585,8 +1585,12 @@ trace("568");
 
 		if (generatedMusic)
 		{
-			if (ModCharts.autoStrum) { // sex
-				strumLine.y = strumLineNotes.members[Std.int(ModCharts.autoStrumNum)].y;
+			if (ModCharts.autoStrum && startedCountdown) { // sex
+				try {
+					strumLine.y = strumLineNotes.members[4].y;
+				} catch(err) {
+					trace(err);
+				}
 			}
 			notes.forEachAlive(function(daNote:Note)
 			{

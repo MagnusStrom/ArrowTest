@@ -77,7 +77,8 @@ class DialogueBox extends FlxSpriteGroup
 		if (!hasDialog)
 			return;
 
-		portraitSpider = new FlxSprite(175, 200);
+		// this shouldnt be too laggy
+		portraitSpider = new FlxSprite(125, 150);
 		portraitSpider.loadGraphic(Paths.image("demontext"));
 		portraitSpider.setGraphicSize(Std.int(portraitSpider.width * PlayState.daPixelZoom * 0.145));
 		portraitSpider.updateHitbox();
@@ -87,6 +88,22 @@ class DialogueBox extends FlxSpriteGroup
 
 		portraitLeft = new FlxSprite(-50, 50);
 		portraitLeft.loadGraphic(Paths.image('casstext'));
+		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.2));
+		portraitLeft.updateHitbox();
+		portraitLeft.scrollFactor.set();
+		add(portraitLeft);
+		portraitLeft.visible = false;
+	
+		portraitLeftMad = new FlxSprite(-50, 50);
+		portraitLeft.loadGraphic(Paths.image('casstextMAD'));
+		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.2));
+		portraitLeft.updateHitbox();
+		portraitLeft.scrollFactor.set();
+		add(portraitLeft);
+		portraitLeft.visible = false;
+
+		portraitLeftScared = new FlxSprite(-50, 50);
+		portraitLeft.loadGraphic(Paths.image('casstextOHSHIT'));
 		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.2));
 		portraitLeft.updateHitbox();
 		portraitLeft.scrollFactor.set();
