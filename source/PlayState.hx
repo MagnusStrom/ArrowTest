@@ -50,8 +50,9 @@ class PlayState extends MusicBeatState
 	var characterCol:Array<String> = CoolUtil.coolTextFile(Paths.txt('characterList'));
 	var col:Array<FlxColor> = [
 		0xFF51d8fb, // BF
+		0xFF51d8fb, // BF PISSING HIS PANTS
 		FlxColor.fromRGB(194, 13, 0), // cass
-		FlxColor.fromRGB(194, 13, 0) // demon hot milf cass
+		FlxColor.BLACK // demon hot milf cass
 	];
 
 	/* 
@@ -288,7 +289,7 @@ class PlayState extends MusicBeatState
 
 		switch (SONG.song.toLowerCase())
 		{
-			case 'berzerker', 'possession', 'takeover':
+			case 'berzerker', 'possession':
 				{
 					curStage = 'philly';
 					trace(SONG.song.toLowerCase());
@@ -331,6 +332,35 @@ class PlayState extends MusicBeatState
 					var street:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('philly/street'));
 					add(street);
 				}
+				default:
+					{
+						{
+							defaultCamZoom = 0.9;
+							curStage = 'stage';
+							var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
+							bg.antialiasing = true;
+							bg.scrollFactor.set(0.9, 0.9);
+							bg.active = false;
+							add(bg);
+	
+							var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
+							stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+							stageFront.updateHitbox();
+							stageFront.antialiasing = true;
+							stageFront.scrollFactor.set(0.9, 0.9);
+							stageFront.active = false;
+							add(stageFront);
+	
+							var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
+							stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+							stageCurtains.updateHitbox();
+							stageCurtains.antialiasing = true;
+							stageCurtains.scrollFactor.set(1.3, 1.3);
+							stageCurtains.active = false;
+	
+							add(stageCurtains);
+						}
+					}
 		}
 trace('loaded songs!');
 		var gfVersion:String = 'gf';
@@ -367,6 +397,8 @@ trace('loaded songs!');
 		dad = new Character(100, 100, SONG.player2);
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
+		//lol
+		camPos.x += 300;
 	trace("386");
 		switch (SONG.player2)
 		{
@@ -1450,8 +1482,9 @@ trace("568");
 
 				switch (dad.curCharacter)
 				{
-					case 'mom':
-						camFollow.y = dad.getMidpoint().y;
+					case 'cass':
+						camFollow.y = dad.getMidpoint().y + 130;
+						camFollow.x = dad.getMidpoint().x + 250;
 					case 'senpai':
 						camFollow.y = dad.getMidpoint().y - 430;
 						camFollow.x = dad.getMidpoint().x - 100;

@@ -29,6 +29,8 @@ class DialogueBox extends FlxSpriteGroup
 
 	var portraitSpider:FlxSprite;
 	var portraitLeft:FlxSprite;
+	var portraitLeftMad:FlxSprite;
+	var portraitLeftScared:FlxSprite;
 	var portraitRight:FlxSprite;
 
 	var handSelect:FlxSprite;
@@ -78,7 +80,7 @@ class DialogueBox extends FlxSpriteGroup
 			return;
 
 		// this shouldnt be too laggy
-		portraitSpider = new FlxSprite(125, 150);
+		portraitSpider = new FlxSprite(125, 170);
 		portraitSpider.loadGraphic(Paths.image("demontext"));
 		portraitSpider.setGraphicSize(Std.int(portraitSpider.width * PlayState.daPixelZoom * 0.145));
 		portraitSpider.updateHitbox();
@@ -95,20 +97,20 @@ class DialogueBox extends FlxSpriteGroup
 		portraitLeft.visible = false;
 	
 		portraitLeftMad = new FlxSprite(-50, 50);
-		portraitLeft.loadGraphic(Paths.image('casstextMAD'));
-		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.2));
-		portraitLeft.updateHitbox();
-		portraitLeft.scrollFactor.set();
-		add(portraitLeft);
-		portraitLeft.visible = false;
+		portraitLeftMad.loadGraphic(Paths.image('casstextMAD'));
+		portraitLeftMad.setGraphicSize(Std.int(portraitLeftMad.width * PlayState.daPixelZoom * 0.2));
+		portraitLeftMad.updateHitbox();
+		portraitLeftMad.scrollFactor.set();
+		add(portraitLeftMad);
+		portraitLeftMad.visible = false;
 
 		portraitLeftScared = new FlxSprite(-50, 50);
-		portraitLeft.loadGraphic(Paths.image('casstextOHSHIT'));
-		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.2));
-		portraitLeft.updateHitbox();
-		portraitLeft.scrollFactor.set();
-		add(portraitLeft);
-		portraitLeft.visible = false;
+		portraitLeftScared.loadGraphic(Paths.image('casstextOHSHIT'));
+		portraitLeftScared.setGraphicSize(Std.int(portraitLeftScared.width * PlayState.daPixelZoom * 0.2));
+		portraitLeftScared.updateHitbox();
+		portraitLeftScared.scrollFactor.set();
+		add(portraitLeftScared);
+		portraitLeftScared.visible = false;
 
 		portraitRight = new FlxSprite(750, 250);
 		portraitRight.loadGraphic(Paths.image('bftext'));
@@ -230,29 +232,28 @@ class DialogueBox extends FlxSpriteGroup
 		swagDialogue.resetText(dialogueList[0]);
 		swagDialogue.start(0.04, true);
 
+		portraitLeft.visible = false;
+		portraitLeftMad.visible = false;
+		portraitLeftScared.visible = false;
+		portraitRight.visible = false;
+		portraitSpider.visible = false;
 		switch (curCharacter)
 		{
 			case 'cass':
 				box.flipX = true;
-				portraitRight.visible = false;
-				if (!portraitLeft.visible)
-				{
-					portraitLeft.visible = true;
-				}
+				portraitLeft.visible = true;
 			case 'bf':
 				box.flipX = false;
-				portraitLeft.visible = false;
-				if (!portraitRight.visible)
-				{
-					portraitRight.visible = true;
-				}
+				portraitRight.visible = true;
 			case 'spider':
 				box.flipX = true;
-				portraitRight.visible = false;
-				if (!portraitSpider.visible)
-				{
-					portraitSpider.visible = true;
-				}
+				portraitSpider.visible = true;
+			case 'cass-angry':
+				box.flipX = true;
+				portraitLeftMad.visible = true;
+			case 'cass-scared':
+				box.flipX = true;
+				portraitLeftScared.visible = true;
 		}
 	}
 

@@ -144,14 +144,7 @@ class TitleState extends MusicBeatState
 		add(bg);
 
 		logoBl = new FlxSprite(-150, -100);
-		if (PFNFLOGO = true)
-		{
-			logoBl.frames = Paths.getSparrowAtlas('ProjectFNFLogoBumpin');
-			logoBl.x += 180;
-			logoBl.y += 80;
-		}
-		else
-			logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl.antialiasing = true;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl.animation.play('bump');
