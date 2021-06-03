@@ -81,6 +81,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'demon':
+				trace("owo");
 				tex = Paths.getSparrowAtlas('demon');
 				frames = tex;
 	
@@ -97,8 +98,9 @@ class Character extends FlxSprite
 				addOffset("singRIGHT", 6, -60);
 				addOffset("singLEFT", 77, 0);
 				addOffset("singDOWN", 187, -107);
-	
+				trace("l");
 				playAnim('idle');
+				trace("ah yes no crash");
 			case 'bf':
 				var tex = Paths.getSparrowAtlas('BOYFRIEND');
 				frames = tex;

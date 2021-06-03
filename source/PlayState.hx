@@ -50,7 +50,8 @@ class PlayState extends MusicBeatState
 	var characterCol:Array<String> = CoolUtil.coolTextFile(Paths.txt('characterList'));
 	var col:Array<FlxColor> = [
 		0xFF51d8fb, // BF
-		FlxColor.fromRGB(194, 13, 0)
+		FlxColor.fromRGB(194, 13, 0), // cass
+		FlxColor.fromRGB(194, 13, 0) // demon hot milf cass
 	];
 
 	/* 
@@ -188,7 +189,7 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-		//ModCharts.autoStrum = true;
+		ModCharts.autoStrum = true;
 		ModCharts.dadNotesVisible = true;
 		ModCharts.bfNotesVisible = true;
 		if (FlxG.sound.music != null)
@@ -215,29 +216,12 @@ class PlayState extends MusicBeatState
 
 		switch (SONG.song.toLowerCase())
 		{
-			case 'tutorial':
-				dialogue = ["Hey you're pretty cute.", 'Use the arrow keys to keep up \nwith me singing.'];
-			case 'bopeebo':
-				dialogue = [
-					'HEY!',
-					"You think you can just sing\nwith my daughter like that?",
-					"If you want to date her...",
-					"You're going to have to go \nthrough ME first!"
-				];
-			case 'fresh':
-				dialogue = ["Not too shabby boy.", ""];
-			case 'dadbattle':
-				dialogue = [
-					"gah you think you're hot stuff?",
-					"If you can beat me here...",
-					"Only then I will even CONSIDER letting you\ndate my daughter!"
-				];
-			case 'senpai':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiDialogue'));
-			case 'roses':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
-			case 'thorns':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
+			case 'berzerker':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('berzerker/talk'));
+			case 'possession': 
+				dialogue = CoolUtil.coolTextFile(Paths.txt('possession/talk'));
+			case 'takeover':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('takeover/talk'));
 		}
 
 		#if desktop
@@ -348,7 +332,7 @@ class PlayState extends MusicBeatState
 					add(street);
 				}
 		}
-
+trace('loaded songs!');
 		var gfVersion:String = 'gf';
 
 		switch (curStage)
@@ -423,7 +407,7 @@ class PlayState extends MusicBeatState
 		}
 
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
-
+trace("426");
 		// REPOSITIONING PER STAGE
 		switch (curStage)
 		{
@@ -496,9 +480,9 @@ class PlayState extends MusicBeatState
 		player2Strums = new FlxTypedGroup<FlxSprite>();
 
 		// startCountdown();
-
+trace("generating song");
 		generateSong(SONG.song);
-
+trace('doen');
 		// add(strumLine);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
@@ -565,7 +549,7 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		infoTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
-
+trace("568");
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
 		// UI_camera.zoom = 1;
@@ -636,12 +620,7 @@ class PlayState extends MusicBeatState
 							});
 						});
 					});
-				case 'senpai':
-					schoolIntro(doof);
-				case 'roses':
-					FlxG.sound.play(Paths.sound('ANGRY'));
-					schoolIntro(doof);
-				case 'thorns':
+				case 'berzerker', 'possession', 'takeover':
 					schoolIntro(doof);
 				default:
 					startCountdown();
@@ -657,6 +636,7 @@ class PlayState extends MusicBeatState
 		}
 
 		super.create();
+		trace('done');
 	}
 
 	function schoolIntro(?dialogueBox:DialogueBox):Void
@@ -748,20 +728,25 @@ class PlayState extends MusicBeatState
 
 	function startCountdown():Void
 	{
+		trace("fuck my life");
 		inCutscene = false;
 
 		generateStaticArrows(0);
 		generateStaticArrows(1);
+		trace('arrows'); 
 
 		talking = false;
 		startedCountdown = true;
 		Conductor.songPosition = 0;
+		trace("sognpsointf");
 		Conductor.songPosition -= Conductor.crochet * 5;
+		trace("heres this thing");
 
 		var swagCounter:Int = 0;
 
 		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
+			trace("ok");
 			dad.dance();
 			gf.dance();
 			boyfriend.playAnim('idle');
@@ -800,6 +785,7 @@ class PlayState extends MusicBeatState
 						else
 							FlxG.sound.play(Paths.sound('intro3'), 0.6);
 					}
+					trace("o owo");
 				case 1:
 					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
 					ready.scrollFactor.set();
@@ -826,6 +812,7 @@ class PlayState extends MusicBeatState
 						else
 							FlxG.sound.play(Paths.sound('intro2'), 0.6);
 					}
+					trace("o1 owo");
 				case 2:
 					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
 					set.scrollFactor.set();
@@ -882,6 +869,12 @@ class PlayState extends MusicBeatState
 						};
 					}
 				case 4:
+					if (SONG.song.toLowerCase() == "takeover") {
+						for (note in 0...strumLineNotes.members.length) {
+							ModCharts.circleLoop(strumLineNotes.members[note], 50, 3);
+						}
+					} 
+					trace('song started');
 			}
 			swagCounter += 1;
 			// generateSong('fresh');

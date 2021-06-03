@@ -17,6 +17,7 @@ class HealthIcon extends FlxSprite
 		antialiasing = true;
 		animation.add('bf', [0, 1, 0], 0, false, isPlayer);
 		animation.add('cass', [6, 7, 6], 0, false, isPlayer);
+		animation.add('demon', [6, 7, 6], 0, false, isPlayer); // i am genuinely retarded
 		animation.play(char);
 		scrollFactor.set();
 	}

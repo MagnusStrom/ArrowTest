@@ -27,6 +27,7 @@ class StoryMenuState extends MusicBeatState
 		['Berzerker', 'Possession', 'Takeover']
 	];
 	var weekColors:Array<FlxColor> = [
+		FlxColor.fromRGB(194, 13, 0),
 		FlxColor.fromRGB(194, 13, 0)
 	];
 	var curDifficulty:Int = 1; // 0 = easy, 1 = normal, 2 = hard
